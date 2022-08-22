@@ -1,0 +1,54 @@
+Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+
+An input string is valid if:
+
+Open brackets must be closed by the same type of brackets.
+Open brackets must be closed in the correct order.
+ 
+
+Example 1:
+
+Input: s = "()"
+Output: true
+Example 2:
+
+Input: s = "()[]{}"
+Output: true
+Example 3:
+
+Input: s = "(]"
+Output: false
+ 
+
+Constraints/Corner Cases/Edge Cases:
+
+1 In case of cone/angular brackets like <= s.length <= 104 (done, just there is no way to check for only '<')
+2 consists of parentheses only '()[]{}'. - then also valid
+3 not only the number of opening and closing parenthesis but the order also needs to be checked
+--------------------------------------------------------------------------
+
+Approach-
+
+1 loop through the string
+2. whenever found an opening paranthesis, store the opening paranthesis in 1 string array 
+& store tha latestOpeneningParantheses in one str variable & continue the loop
+3. if from here onwards start checking if the closing parantheses on the opened one comes, 
+if yes, remove the openeing paranthesis from array & set the latestOpeneningParanthesis = ""
+4. if another opening parantheses appears, store its index in the loop
+& store it in latestOpeneningParantheses & continue to check 
+if the matching closing parantheses appears
+5. if closing paranthesis of the latestOpeneningParanthesis is found, remove it from array 
+& set the latestOpeneningParantheses to the last opening paranthesis added in the array & continue 
+6. in this way only 1 loop is used
+7. if atlast, after loop completion, any opening paranthesis is left in the array,
+then the string is not valid else valid
+
+Corner cases/edge cases that you can ask the interviewer: 
+
+also check the extra conditions for < & > if they are brackets or less than, greather than [eg: (a+b<={c-d})]
+also check if there are only closing brackets
+also check if the string has only paranthesis [{()}] - then also valid
+also check the character before & after parantheses - eg: (+a+b) - [{c+d+}] - NOT NEEDED TO CHECK AS PER GIVEN IN QUESTION
+
+NOTE: VERY IMP - to remove last element from python list, 
+we can't remove by index, we need to use arr.pop()

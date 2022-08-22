@@ -1,0 +1,19 @@
+Write a function to find the longest common prefix string amongst an array of strings.
+
+If there is no common prefix, return an empty string "".
+
+ 
+
+Example 1:
+Input: strs = ['flower','flyer','flow','floor','flu']
+Output: "fl"
+Example 2:
+Input: strs = ["dog","racecar","car"]
+Output: ""
+Explanation: There is no common prefix among the input 
+----------------------------------------------------------------------------------------
+
+Approach:
+
+1. take first char of 1st string & then check if the 1st char of all other strings is same
+2. if yes continue & do the same for 2nd, 3rd, 4th etc chars untill any one unmatches

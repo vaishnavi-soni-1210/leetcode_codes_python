@@ -1,0 +1,13 @@
+This problem was asked by Stripe.
+
+Given an array of integers, find the first missing positive integer in linear time and constant space. In other words, find the lowest positive integer that does not exist in the array. The array can contain duplicates and negative numbers as well.
+For example, the input [3, 4, -1, 1] should give 2. The input [1, 2, 0] should give 3.
+You can modify the input array in-place.
+
+Approach:
+1 sort the array in ascending order
+2 run a loop till you find 1st positive number, save it in temp
+3 then there after in the loop, check if every next number is in sequence
+4 if at any place, if the sequqnce breaks, we get the missing number
+5 if the loop ends, without breaking sequqnce, the next possible number is the answer
+6 make sure to break the loop once missing number is found

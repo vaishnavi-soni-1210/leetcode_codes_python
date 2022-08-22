@@ -1,0 +1,19 @@
+Given an integer x, return true if x is palindrome integer.
+An integer is a palindrome when it reads the same backward as forward.
+For example, 121 is a palindrome while 123 is not.
+
+Source: https://leetcode.com/problems/palindrome-number/
+
+Approach1-
+1. Convert int into string
+2. apply loop on each character of string with two variables, i = 0 & j = string.length, i++ & j--
+3. run loop till i == j (both come to the middle character), compare each string[i] with string[j]
+4. if the comparison returns false then break through the loop else return false
+
+Approach2-  right
+or instead of using loop the complicated way, I can use reverse loop only once to reverse the string,
+& store it in a new variable & check if both are equal
+
+note: for using loop in reverse, make sure to use 3rd parameter i.e. decrement
+eg: for i in range(len(str)-1,-1,-1)
+
