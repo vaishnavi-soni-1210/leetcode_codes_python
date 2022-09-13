@@ -20,3 +20,16 @@ Explanation: The square root of 8 is 2.82842..., and since the decimal part is t
 Constraints:
 
 0 <= x <= 231 - 1
+
+-----------------------------------------------------------------
+
+Solving trick:  The Babylonian Method for Computing Square Roots
+double root = 1;
+int i = 0;
+//The Babylonian Method for Computing Square Roots
+while (true)
+{
+    i = i + 1;
+    root = ((number / root) + root) / 2;
+    if (i == number + 1) { break; }
+}
