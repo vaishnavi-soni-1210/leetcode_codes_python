@@ -32,3 +32,11 @@ Constraints:
 1 <= digits.length <= 100
 0 <= digits[i] <= 9
 digits does not contain any leading 0's.
+
+Solving trick:
+- failing test cases (on leetcode) has more than 10 digits in the digits array, 
+therefore converting it into int is creating problem
+- solution is to avoid conversion into int
+- so in place of int(math.pow(10,exponent), 
+use (10 ** exponent)
+

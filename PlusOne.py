@@ -15,7 +15,8 @@ class Solution(object):
             #print(multiplier)
             #if(multiplier == 9):
                 #print('number is:%d' %number)
-            number = number + (num * int(math.pow(10,multiplier)))
+            #number = number + (num * int(math.pow(10,multiplier)))
+            number = number + (num * (10 ** multiplier))
             #print(number + (num * math.pow(10,multiplier)))
             #print(number)
             multiplier = multiplier - 1
