@@ -24,12 +24,11 @@ Constraints:
 -----------------------------------------------------------------
 
 Solving trick:  The Babylonian Method for Computing Square Roots
-double root = 1;
-int i = 0;
-//The Babylonian Method for Computing Square Roots
-while (true)
-{
-    i = i + 1;
-    root = ((number / root) + root) / 2;
-    if (i == number + 1) { break; }
-}
+ g = x/2;
+    g2 = g + 1;
+    while(g != g2):
+        n = x/ g;
+        g2 = g;
+        g = (g + n)/2;
+
+available: https://www.w3resource.com/python-exercises/math/python-math-exercise-18.php
