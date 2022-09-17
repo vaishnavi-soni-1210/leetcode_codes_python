@@ -23,12 +23,9 @@ Constraints:
 
 -----------------------------------------------------------------
 
-Solving trick:  The Babylonian Method for Computing Square Roots
- g = x/2;
-    g2 = g + 1;
-    while(g != g2):
-        n = x/ g;
-        g2 = g;
-        g = (g + n)/2;
+Solving trick:  Use binary search method
 
-available: https://www.w3resource.com/python-exercises/math/python-math-exercise-18.php
+Binary search - in sorted list, find mid, if num to be search is less than mid , consider left part else consider right part
+, final result = mid (left if considering floor)
+
+solution in c++ : https://www.youtube.com/watch?v=OxgNVgvjmYQ
