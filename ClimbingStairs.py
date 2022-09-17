@@ -12,6 +12,9 @@ class Solution(object):
         
         return one
 
+    #check what is the difference between: 
+    #for i in range(n-1) and for i in rane(n-3,-1,-1)
+
     def climbStairs1(self, n):
         """
         :type n: int
@@ -33,5 +36,9 @@ class Solution(object):
 # approach is explained in txt, i.e. brute force recursive approach (fibbonaci series formula [n = (n-1)+(n-2)])   
 obj = Solution()
 n = 39
+#n = 5
 numberOfWays = obj.climbStairs(n)
 print(numberOfWays)
+
+#time complexity = O(n) bcz each result(n times) depends on previous subproblem, 
+#space complexity = O(1), because we r only using 2-3 variables

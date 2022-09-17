@@ -47,3 +47,6 @@ solution is present here: https://www.geeksforgeeks.org/count-ways-reach-nth-sta
 best solution explained: https://www.youtube.com/watch?v=Y0lT9Fck7qI - SUCCESSFULL one
 
 => + there are many other leetcode solutions also available on this youtube channel
+
+#time complexity = O(n) bcz each result(n times) depends on previous subproblem, 
+#space complexity = O(1), because we r only using 2-3 variables
