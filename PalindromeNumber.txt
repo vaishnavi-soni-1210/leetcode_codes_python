@@ -17,3 +17,8 @@ or instead of using loop the complicated way, I can use reverse loop only once t
 note: for using loop in reverse, make sure to use 3rd parameter i.e. decrement
 eg: for i in range(len(str)-1,-1,-1)
 
+#space & time complexity are O(n)
+#instead we can exclude the space complexity by just using the same string 
+# & using each character as middle character & comparing left & right sides, 
+# like what is done in LongestPalindromeSubstring.py
+

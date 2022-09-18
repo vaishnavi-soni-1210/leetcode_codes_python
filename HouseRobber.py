@@ -20,3 +20,6 @@ obj = Solution()
 nums = [1,2,3,1]
 maxRob = obj.rob(nums)
 print(maxRob)
+
+#here time complexity = O(n) as we are looping n times or time depends on n items
+#& space complexity is O(1) as no extra space used

@@ -6,6 +6,7 @@ class Solution(object):
         """
         one, two = 1, 1
         for i in range(n-1):
+            print(i)
             temp = one
             one = one + two
             two = temp
@@ -35,8 +36,8 @@ class Solution(object):
 
 # approach is explained in txt, i.e. brute force recursive approach (fibbonaci series formula [n = (n-1)+(n-2)])   
 obj = Solution()
-n = 39
-#n = 5
+#n = 39
+n = 5
 numberOfWays = obj.climbStairs(n)
 print(numberOfWays)
 

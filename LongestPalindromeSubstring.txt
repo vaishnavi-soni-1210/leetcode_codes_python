@@ -1,0 +1,40 @@
+Given a string s, return the longest palindromic substring in s.
+
+A string is called a palindrome string if the reverse of that string is the same as the original string.
+
+Example 1:
+
+Input: s = "babad"
+Output: "bab"
+Explanation: "aba" is also a valid answer.
+Example 2:
+
+Input: s = "cbbd"
+Output: "bb" 
+
+Constraints:
+
+1 <= s.length <= 1000
+s consist of only digits and English letters.
+
+---------------------------------------------------------------------------
+
+appraoch:
+1. from string s, take out each possible substring. eg: abscdefg = a,ab,abc,abcd,abcdef,abcdefg
+2. loop through each substring to check if its a palindrome, if yes store the length & check max
+3. time complexity in this case = O(n^3)
+time = n * (n*n) i.e. for finding each substring (n*n) & loop n times i.e *n => n*n*n
+4. we can reduce time complexity to O(n^2)
+
+time complexity can be reduced if we improve the method to check if susbstring is a palindrome
+we can check if string is a substring in 3 possible ways:
+
+1> take a string and reverse it & save in another array & compare both to check if palindrome 
+(space complexity will be O(n) & time O(n) for each substring), total = O(n^3) - both space & time
+
+2> compare 1st & last character of string untill reached middle & compare
+space complexity = O(1) & time complexity = O(n^2)
+
+3> take each character as middle character & check left & right characters simultaneously
+space complexity = O(1) & time complexity = O(n^2)
+corner case: if palindrome is even eg: acbbbba, palindrome = bbbb

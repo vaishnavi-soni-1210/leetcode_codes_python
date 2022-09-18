@@ -32,3 +32,5 @@ approach:
 
 choices = max ((arr[0]+rob(arr[2:n])),rob(arr[1:n])
 i.e. either 1 and rob([3,1]) or rob([2,3,1]), whichever is max
+
+here time complexity = O(n) as we are looping n times & space complexity is O(1) as no extra space used

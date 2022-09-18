@@ -21,3 +21,8 @@ class Solution(object):
 obj = Solution()
 result = obj.isPalindrome(121)
 print(result)
+
+#space & time complexity are O(n)
+#instead we can exclude the space complexity by just using the same string 
+# & using each character as middle character & comparing left & right sides, 
+# like what is done in LongestPalindromeSubstring.py
