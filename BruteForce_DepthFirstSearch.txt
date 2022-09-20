@@ -1,0 +1,4 @@
+Brute Force Depth First Search is an approach, in which we have a choice at every step(node).
+
+Eg: Climbing stairs problem: there is a choice at every step, whether to take 1 step or 2
+Eg: Coin change problem: there is a choice at every step, which coin out of the given 4 to take

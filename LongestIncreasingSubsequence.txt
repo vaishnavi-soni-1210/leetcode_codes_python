@@ -1,0 +1,50 @@
+Given an integer array nums, return the length of the longest strictly increasing subsequence.
+
+A subsequence is a sequence that can be derived from an array by deleting some or no elements without changing the order of the remaining elements. For example, [3,6,2,7] is a subsequence of the array [0,3,1,6,2,2,7].
+
+Example 1:
+
+Input: nums = [10,9,2,5,3,7,101,18]
+Output: 4
+Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4.
+Example 2:
+
+Input: nums = [0,1,0,3,2,3]
+Output: 4
+Example 3:
+
+Input: nums = [7,7,7,7,7,7,7]
+Output: 1
+ 
+Constraints:
+
+1 <= nums.length <= 2500
+-104 <= nums[i] <= 104
+ 
+Follow up: Can you come up with an algorithm that runs in O(n log(n)) time complexity?
+
+Approach 1: Brute Force Depth First Search
+eg : nums = [1,2,4,3]
+for 1st step in tree, there will be 4 possible indices to choose i.e. 0,1,2,3 & continuing from that, 
+for 2nd step in tree, there will be 3 next possible indices to choose i.e. index 1,2,3
+find longest increasing sequence possible
+- if on any step, next value to be added is less than the last, discontinue
+
+- DRAW A DFS tree 
+- time complexity = n^m
+
+Approach 2: Brute Force Depth First Search
+now, longest possible subsequqnce possible, starting from each index should be calculated (bottom-up):
+DP[3] = longest possible substring possible starting from index 3 = 1, ALWAYS THE CASE
+DP[2] = 1
+DP[1] = 2
+DP[0] = 3
+
+recursion here -
+DP[3] = 1 (ALWAYS)
+DP[2] = max(1, 1+DP[3]) other one only if nums[2] < nums[3]), else 1
+DP[1] = max(1, 1+DP[2], 1+DP[3]) others only if (nums[1] < nums[2] or nums[1] < nums[3]) ), else 1
+DP[0] = max(1,1+DP[1],1+DP[2],1+DP[3]) 
+others only if (nums[0] < nums[1] or nums[0] < nums[2] or nums[1] < nums[3]) ), else 1
+
+time complexity = O(n*n) = O(n^2) because for each num, we are finding subproblem(num)

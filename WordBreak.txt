@@ -1,0 +1,66 @@
+Given a string s and a dictionary of strings wordDict, return true if s can be segmented into a space-separated sequence of one or more dictionary words.
+
+Note that the same word in the dictionary may be reused multiple times in the segmentation.
+
+ 
+
+Example 1:
+
+Input: s = "leetcode", wordDict = ["leet","code"]
+Output: true
+Explanation: Return true because "leetcode" can be segmented as "leet code".
+Example 2:
+
+Input: s = "applepenapple", wordDict = ["apple","pen"]
+Output: true
+Explanation: Return true because "applepenapple" can be segmented as "apple pen apple".
+Note that you are allowed to reuse a dictionary word.
+Example 3:
+
+Input: s = "catsandog", wordDict = ["cats","dog","sand","and","cat"]
+Output: false
+ 
+
+Constraints:
+
+1 <= s.length <= 300
+1 <= wordDict.length <= 1000
+1 <= wordDict[i].length <= 20
+s and wordDict[i] consist of only lowercase English letters.
+All the strings of wordDict are unique.
+wordDict is named as dictionary bt thats a list
+
+Approach 1: 
+-I was first thinking that I should consider looping through each word from dictionary,
+but no.. in case of 'catsandog' eg. it will return true but ans should be false ('og' left),
+bcz here we need not to go reverse into the string to complete a word 
+-So, soln is to loop through the string & after each letter, check if the word(1 or more chars) 
+is present in dict 
+
+Approach 2: Dynamic programming (Bottom up DP solution)
+-loop through the dictionary for each word, but in string, consider from beginning only, 
+once the word matches, start looking from next character in the string to search
+- also while checking each word from dictionary, we need to repeat for all words for each time,
+because words can repeat too
+- also while checking each word from dictionary, consider length of each word & check in string
+(given: size of word in dict is smaller than size of string)
+DECISION TREE : for each segment in string, there will be 4 possible solutions (if length(dict) == 4)
+
+Bottom up Dynmic Programming solution eg:
+string = "neetcode" (length = 8), dict = ["neet","leet","code"], 
+note: for each dp consider length equal to length from dict[i], here = 4
+DP[8] = true (end of string i.e. blank)
+DP[7] = false (e => doesn't match)
+DP[6] = false (de => doesn't match)
+DP[5] = false (ode => doesn't match)
+DP[4] = true (code => match) {DP[4 + len(word)] = DP[8] = true}
+DP[3] = false
+DP[2] = false
+DP[1] = false
+DP[0] = true
+
+here, DP[0] can be computed based on after neet, index = 4, so depends on DP[4]
+DP[0] = DP[0 + len(word)] = DP[0+4] = DP[4] = true
+
+time complexity: O(n*m*n) = O(n^2m), where n is the size of string & m is no of words in dict, 
+last n is for comparison from dict word to string, which can also be of the same size
