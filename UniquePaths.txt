@@ -1,0 +1,39 @@
+There is a robot on an m x n grid. The robot is initially located at the top-left corner (i.e., grid[0][0]). The robot tries to move to the bottom-right corner (i.e., grid[m - 1][n - 1]). The robot can only move either down or right at any point in time.
+
+Given the two integers m and n, return the number of possible unique paths that the robot can take to reach the bottom-right corner.
+
+The test cases are generated so that the answer will be less than or equal to 2 * 109. 
+
+Example 1:
+
+Input: m = 3, n = 7
+Output: 28
+Example 2:
+
+Input: m = 3, n = 2
+Output: 3
+Explanation: From the top-left corner, there are a total of 3 ways to reach the bottom-right corner:
+1. Right -> Down -> Down
+2. Down -> Down -> Right
+3. Down -> Right -> Down 
+
+Constraints:
+
+1 <= m, n <= 100
+
+Approach - check bottom to up DP solution.. each cell will be a problem 
+to which solution will be number of ways to reach that cell. So, last cell grid[m-1,n-1] will be d result
+So, base case will be last (finish point), to reach it from itself number of ways will be 1.
+
+From bottom most row, there is no going down, so for each cell of last row,
+num of ways will always be 1(to the right)+ 0 = 1
+
+Similarly, From last column, there is no going right, so for each cell of last column,
+num of ways will always be 1(to the bottom)+ 0 = 1
+
+For each cell, number of ways i.e result = (right + bottom) results
+we'll store the result of each cell in cache so that we need not to calculate everytime we reach to it.
+
+So, atlast when we'll reach grid[0,0] we'll be able to calculate total number of ways i.e. right+bottom
+
+time complexity = O(m*n)
