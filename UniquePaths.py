@@ -28,3 +28,4 @@ result = obj.uniquePaths(3,7)
 print(result)
 
 #time complexity = O(m*n)
+#memory complexity = O(n)  #length of a row or number of columns bcz one row is saved at a time

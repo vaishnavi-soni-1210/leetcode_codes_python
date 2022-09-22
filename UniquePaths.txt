@@ -36,4 +36,5 @@ we'll store the result of each cell in cache so that we need not to calculate ev
 
 So, atlast when we'll reach grid[0,0] we'll be able to calculate total number of ways i.e. right+bottom
 
-time complexity = O(m*n)
+#time complexity = O(m*n)
+#memory complexity = O(n)  #length of a row or number of columns bcz one row is saved at a time
