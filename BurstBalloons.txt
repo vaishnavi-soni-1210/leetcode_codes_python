@@ -1,0 +1,51 @@
+You are given n balloons, indexed from 0 to n - 1. Each balloon is painted with a number on it represented by an array nums. You are asked to burst all the balloons.
+
+If you burst the ith balloon, you will get nums[i - 1] * nums[i] * nums[i + 1] coins. If i - 1 or i + 1 goes out of bounds of the array, then treat it as if there is a balloon with a 1 painted on it.
+
+Return the maximum coins you can collect by bursting the balloons wisely.
+
+Example 1:
+
+Input: nums = [3,1,5,8]
+Output: 167
+Explanation:
+nums = [3,1,5,8] --> [3,5,8] --> [3,8] --> [8] --> []
+coins =  3*1*5    +   3*5*8   +  1*3*8  + 1*8*1 = 167
+
+Example 2:
+
+Input: nums = [1,5]
+Output: 10
+ 
+Constraints:
+
+n == nums.length
+1 <= n <= 300
+0 <= nums[i] <= 100
+
+Corner cases: Are there gonna be 0s in array i.e. on balloons?
+
+Approach 1: DFS tree - brute force:
+-for each node, there are going to be n possible solutions, 
+-and we can find the no. of coins at each node/point & max in our ans
+-time complexity = n^n & so is the space complexity
+- BASICALLY, we'll consider each balloon & think what will be the result if we pop it first
+
+Approach 2: caching
+- for nums array, for every value, consider that balloon will be popped at the last, so we get 2 subarrays
+- left subarray will have an implicit 1 on left & nums[i] on right, which will be multiplied 
+- right subarray will have an implicit 1 on the right & nums[i] on the left, which will be multiplied
+- at the end we'll pop nums[i], with implicit 1 & 1 on left and right to be multiplied
+- BASICALLY, we'll consider each balloon & think what will be the result if we pop it last
+
+nums = 1[3,1,5,8]1
+initially L=3,R=8
+for every position nums[i]: DP[L][R] =
+nums[L-1]*nums[i]*nums[R+1]   +   DP[i+1][R]   + DP[L][i-1]
+
+Space complexity = O(n^2) because we are storing for every value in nums & in 2D array i.e. DP[L][R]
+Time complexity = O(n^3) 
+because the total no of sub problems will be O(n^2), & in each subproblem, we'll look for n values
+Therefore, O(n^2 * n) = O(n^3)
+
+KIND OF SAME AS BINARY SEARCH 

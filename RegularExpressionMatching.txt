@@ -1,0 +1,66 @@
+Given an input string s and a pattern p, implement regular expression matching with support for '.' and '*' where:
+
+'.' Matches any single character.​​​​
+'*' Matches zero or more of the preceding element.
+The matching should cover the entire input string (not partial).
+
+Example 1:
+
+Input: s = "aa", p = "a"
+Output: false
+Explanation: "a" does not match the entire string "aa".
+Example 2:
+
+Input: s = "aa", p = "a*"
+Output: true
+Explanation: '*' means zero or more of the preceding element, 'a'. Therefore, by repeating 'a' once, it becomes "aa".
+Example 3:
+
+Input: s = "ab", p = ".*"
+Output: true
+Explanation: ".*" means "zero or more (*) of any character (.)".
+ 
+Constraints:
+
+1 <= s.length <= 20
+1 <= p.length <= 30
+s contains only lowercase English letters.
+p contains only lowercase English letters, '.', and '*'.
+It is guaranteed for each appearance of the character '*', there will be a previous valid character to match.
+
+Edge cases:
+
+1. if s = "aa", p = "a" - false
+2. if s = "aa", p = "a." - true because . can be "a"
+3. if s = "ab", p = "a." - true because . can be "b"
+4. if s = "aa", p = "a.." - false because .. means 2 chars, so length also doesnt match
+5. if s = "aaaa", p = "a*" - true bcz a* = ["","a","aa","aaa","aaaa","aaaaa" etc]
+6. if s = "a", p = "ab*" - true bcz ab* = ["a","ab","abb","abbb","abbbb","abbbbb" etc]
+7. if s =  "ab", p = ".*" - true bcz .* = ["",.,..,...,....,..... etc]
+
+Approach 1: DFS tree:
+- use pattern to draw the tree & reach till s or the max string that can be formed with pattern partial
+- for p="a*", at each node, we have 2 decisions, i.e. to use a or not use a,
+in case not using a, we'll end up with "".. and if we use a we can increase tree infinite times (aaaaaa..)
+-check till we reach s or continue to the next character in pattern eg: a*b. then it will end with b
+
+- time complexity = 2^n (n is the size of input string s)
+
+Approach 2: Caching: storing each result into cache : Top down memoization
+- use i as index of string s, and j as index of pattern p
+- every time we have a *, we have 2 decisions, either to use * character or not
+- eg: s = "aab",p = c*a*b, then for first decision, we need not to use *
+so i = i, j = j+2  [skipping * and going to next character in pattern]
+- on the other hand after skipping c*, there is a*b in pattern, so we can again use * or not
+for 2nd decision, we need to use * to add "a" & match with s[i]
+so i = i+1, j = j
+- repeat the above two steps till we have a * corresponding to a character in p
+- if we dont have a * after a character that means it is a mandatory 1,
+so check s[i] == p[j], i=i+1, j=j+1
+- OUT OF BOUNDS CONDITION: i >= len(s) or j >= len(p) i.e. strings match & return true
+- OUT OF BOUNDS CONDITION: if i < len(s) & j >= len(p) i.e only j is out of bounds eg: s ="aa", p = "a"
+return false
+- OUT OF BOUNDS CONDITION: if i is out of bounds & j is in bound i.e. s="aa", p="a*b*",
+technically we need to continue because * can give "" too
+
+- time complexity = O(n*m) where n = size(s), m = size(p)
