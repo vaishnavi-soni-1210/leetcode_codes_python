@@ -1,0 +1,55 @@
+Given an unsorted integer array nums, return the smallest missing positive integer.
+You must implement an algorithm that runs in O(n) time and uses constant extra space.
+
+Example 1:
+
+Input: nums = [1,2,0]
+Output: 3
+Explanation: The numbers in the range [1,2] are all in the array.
+Example 2:
+
+Input: nums = [3,4,-1,1]
+Output: 2
+Explanation: 1 is in the array but 2 is missing.
+Example 3:
+
+Input: nums = [7,8,9,11,12]
+Output: 1
+Explanation: The smallest positive integer 1 is missing.
+ 
+Constraints:
+1 <= nums.length <= 105
+-231 <= nums[i] <= 231 - 1
+-----------------------------------------------------------------------------------------
+
+IMP POINT: In WORST case, for array nums of size 'n', missing positive int could be n+1
+eg: nums = [1 2 3]
+for an array of size 3, even if all vals are positive, smallest missing could be 4 & not larger than that
+- THIS IS OUR BASE CASE
+
+Approach1: Sort the array in ascending order & take missing = 1 
+& compare with each in nums
+& increment it everytime u find it in nums to find missing +ve
+->time complexity = nlogn (bcz we are sorting array & then looping through it), space complexity = O(1)
+
+Approach2: Convert nums into a Hashset (key value pairs where keys are in order)
+BASE CASE: missing number lies between 1 to len(nums)+1
+so loop 1 to len(nums)+1, & check for each i, if it exists in hashset, if yes increment else return i.
+->time complexity = O(n), space complexity = O(n) - for hashset
+
+Approach3: Complicated yet most optimized one
+BASE CASE: missing number lies between 1 to len(nums)+1
+- loop1 - convert all negatives into 0
+- loop2 - to mark for each +ve number in nums that it exists, eg: to mark that 3 exists in nums, we are 
+gonna take i = 3-1 i.e. i=2 & mark nums[i] to -ve, if its alredy not
+-while repeating this process, before checking each of the number in range(1 to len(nums)), convert it 
+into abs i.e. +ve, bcz it may have converted into -ve to indicate int coressponding to that index exists.
+-EDGE CASE: if the index where we need to indicate has value 0, we can't multiply it by -1 to make it -ve
+- so in that case, mark it to (-1 * len(nums)+1) bcz our number anyway lies between 1 & len(nums),
+so that number will remain out of bounds & wont affect our result
+- loop3 - loop between i = 1 to len(nums), check for each index nums[i-1] if value is -ve or +ve
+if value is -ve, increment i & if positive return 'i' because we are marking on indexes 
+whether positive number is present or not. so our result is the first +ve index found
+- if not found, then outside the loop return len(nums)+1 as result because all till len(nums) are present
+
+-> time complexity = 3 times O(n) i.e. O(n), space complexity = O(1) bcz we are using same array & not hashset
