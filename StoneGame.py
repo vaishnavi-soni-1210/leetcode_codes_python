@@ -32,14 +32,12 @@ class Solution(object):
 
             return dp[(l,r)]
 
-        return DFS(0,len(piles)-1)
+        return (DFS(0,len(piles)-1) > (sum(piles)-DFS(0,len(piles)-1)))
+        #return (maxTotalOfAlice > maxTotalOfBob)
 
 obj = Solution()
 piles = [5,1,100,6]
-maxTotalOfAlice = obj.stoneGame(piles)
-print(maxTotalOfAlice)
-maxTotalOfBob = sum(piles) - maxTotalOfAlice
-print(maxTotalOfBob)
-#print(True) if(maxTotalOfAlice>maxTotalOfBob) else print(False)
+ifAliceWins = obj.stoneGame(piles)
+print(ifAliceWins)
 
 #left and right can be any values from 0 to n, so time complexity = O(n*n) = O(n^2)
