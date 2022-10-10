@@ -1,0 +1,50 @@
+Premium leetcode problem: find on lintcode:
+https://www.lintcode.com/problem/515/
+
+There are a row of n houses, each house can be painted with one of the three colors: red, blue or green. The cost of painting each house with a certain color is different. You have to paint all the houses such that no two adjacent houses have the same color, and you need to cost the least. Return the minimum cost.
+
+The cost of painting each house with a certain color is represented by a n x 3 cost matrix. For example, costs[0][0] is the cost of painting house 0 with color red; costs[1][2] is the cost of painting house 1 with color green, and so on... Find the minimum cost to paint all houses.
+
+Eg1 : Input: [[14,2,11],[11,14,5],[14,3,10]]
+Output: 10
+Explanation: Paint house 0 into blue, paint house 1 into green, paint house 2 into blue. 
+Minimum cost: 2 + 5 + 3 = 10.
+
+Eg2 : Input: [[1,2,3],[1,4,6]]
+Output: 3
+
+Approach- if for house 0, I choose color 1, then for next house 1, 
+I have to choose between color 0 or 2 because no 2 adjacent houses can have the same color
+Except the 1st house, for all other houses we have 2 choices each. 
+
+1. Using BRUTE force solution, DRAW a decision tree of choices for each house
+time complexity = 2^n
+- we can see some repeating subproblems in the tree, which we can use for caching
+
+2. Caching - 
+we can eliminate the repeatative work by caching the results of subproblems
+- each time we need to use a function with 2 parameters i.e. h=house number & i=color index between 0-2
+- what will the cache contain?
+- it will contain the minimum cost of painting starting from a particular house h, 
+using a particular index color i
+- SIZE OF CACHE = n*3
+
+3. Dynamic programming solution -top to bottom approach - draw a 2d matrix of size n*3
+taking eg: costs = [[17,2,17],[16,16,5],[14,3,19]]
+
+            color 
+house   0           1           2
+0       17          2           17
+1       16+2=18    16+17=33   5+2=7
+2       14+7        3+7         19+18
+
+ans: min(21,10,37) = 10
+note: for each solution => current cost + minimum from above row(prev house) using remaining 2 colors
+TIME COMPLEXITY = O(n) [looping for n houses]
+SPACE COMPLEXITY = O(n*3) = O(n) [size of cache]
+
+- but we can reduce the space complexity because we need only previous row to calculate current 
+i.e. 1 row at a time so final:
+
+TIME COMPLEXITY = O(n) [looping for n houses]
+SPACE COMPLEXITY = O(3) = O(1) [size of cache]
