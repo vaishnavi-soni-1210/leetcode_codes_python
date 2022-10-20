@@ -1,0 +1,36 @@
+You are given a 0-indexed array of integers nums of length n. You are initially positioned at nums[0].
+
+Each element nums[i] represents the maximum length of a forward jump from index i. In other words, if you are at nums[i], you can jump to any nums[i + j] where:
+
+0 <= j <= nums[i] and
+i + j < n
+Return the minimum number of jumps to reach nums[n - 1]. The test cases are generated such that you can reach nums[n - 1].
+
+Example 1:
+
+Input: nums = [2,3,1,1,4]
+Output: 2
+Explanation: The minimum number of jumps to reach the last index is 2. Jump 1 step from index 0 to 1, then 3 steps to the last index.
+Example 2:
+
+Input: nums = [2,3,0,1,4]
+Output: 2
+ 
+Constraints:
+
+1 <= nums.length <= 104
+0 <= nums[i] <= 1000
+
+----------------------------------------------------------
+
+Very similar to the previous Jump Game problem. 
+Difference is that here we need to find the minimum number of steps by which we can reach the goal
+
+Here also there could be 2 solutions-
+
+1 Brute force DFS - time complexity = O(n^2)
+2 Greedy solution - time complexity = O(n) - BFS - BREADTH FIRST SEARCH
+in BFS, we first consider 1 jump, i.e. 0 step & see to which positions we'll land. 
+then from all those positions, consider step 2 i.e 2 jump & see to which positions we'll land.
+& do the same from those positions too, 
+once the goal position is reached, we'll know exactly how many min steps are required

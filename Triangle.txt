@@ -1,0 +1,48 @@
+Given a triangle array, return the minimum path sum from top to bottom.
+
+For each step, you may move to an adjacent number of the row below. 
+More formally, if you are on index i on the current row, you may move to either index i 
+or index i + 1 on the next row.
+
+Example 1:
+
+Input: triangle = [[2],[3,4],[6,5,7],[4,1,8,3]]
+Output: 11
+Explanation: The triangle looks like:
+   2
+  3 4
+ 6 5 7
+4 1 8 3
+The minimum path sum from top to bottom is 2 + 3 + 5 + 1 = 11 (underlined above).
+Example 2:
+
+Input: triangle = [[-10]]
+Output: -10 
+
+Constraints:
+
+1 <= triangle.length <= 200
+triangle[0].length == 1
+triangle[i].length == triangle[i - 1].length + 1
+-104 <= triangle[i][j] <= 104
+ 
+
+Follow up: Could you do this using only O(n) extra space, 
+where n is the total number of rows in the triangle?
+
+Approach - 
+1 draw a tree like structure - decision tree
+2 from each node, we can move to the next row, and in that we can choose either same index or adjacent index
+3 so from every node, to the next node, we have 2 choices
+4 we need to return result with minimum possible sum
+
+At each node & solve the below subproblem, untill we reach the last subarray, 
+i.e. from each position in triangle, find the minimumPathSum
+
+USE DYNAMIC PROGRAMMING -
+bottom to top approach & find the child "minimum possible sum", till we reach the top node
+
+We only need to use the next 1 row from any node.so we need to store only 1 row at a time
+space complexity = O(n), where n is the no. of rows i.e. height of tree or len(matrix)
+
+time complexity = O(n^2), i.e we need to calculate for each node

@@ -1,0 +1,29 @@
+Given an integer n, return the number of structurally unique BST's (binary search trees) 
+which has exactly n nodes of unique values from 1 to n.
+
+Example 1:
+Input: n = 3
+Output: 5
+
+Example 2:
+Input: n = 1
+Output: 1
+
+Example 3: 
+Input: n = 2
+Output: 2
+
+Constraints:
+1 <= n <= 19
+-------------------------------------------------------------
+
+Approach: Dynamic programming - bottom to top
+-In BST - on left node there is smaller number & on right there is larger number
+-consider each number starting from 1 to n and treat each number as the base node
+-for each base node, numTrees(left side numbers)*numTrees(right side numbers)
+-so for n, start from 1 as base node, till n as base node & SUM them all at last
+
+time complexity = O(n^2) 
+{bcz we are calculating for each number in n & iterate consider all other numbers each time}
+space complexity = O(n) 
+{bcz storing result of each subproblem}
