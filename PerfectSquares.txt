@@ -1,0 +1,57 @@
+Given an integer n, return the least number of perfect square numbers that sum to n.
+
+A perfect square is an integer that is the square of an integer; in other words, 
+it is the product of some integer with itself. For example, 1, 4, 9, and 16 are perfect squares 
+while 3 and 11 are not.
+
+Example 1:
+Input: n = 12
+Output: 3
+Explanation: 12 = 4 + 4 + 4.
+
+Example 2:
+Input: n = 13
+Output: 2
+Explanation: 13 = 4 + 9.
+ 
+Constraints:
+1 <= n <= 104
+
+------------------------------------------------------------------------------
+Perfect square is an integer that is the square of an integer. eg: 1,4,9,16,25 etc
+Same as COIN CHANGE problem
+------------------------------------------------------------------------------
+
+Approach: DP brute force - using decision tree - n=12 say
+in n = 12, largest int that squares less than 12 is 3 => 3^2 = 9 
+which is less than 12 & 4^2 = 16 > 12
+
+But we can't be greedy here, i.e. we can't start with taking 3 as first possible number, because later we
+will end up having 3^2 + 1^2 + 1^2 + 1^2, i.e. 4 digits but actual ans is 2^2 + 2^2 + 2^2 i.e. 3 digits
+
+starting from sum = 0, we can have 3 branches - 1^2,2^2,3^2
+again from 1,4,9 => we can have 3 branches - 1^2,2^2,3^2
+
+after each node in decision tree, we have a sum & target = sum + remaining
+So, we need to find the soln of subproblem, i.e. how many minimum perfect squares can add to "remaining"
+
+here we have repeated subproblems, and we need to calculate the minimum number of perfect squares 
+to reach to the subproblem number. so we can store the subproblems in cache to reuse.
+
+so, as every problem 'n', depends on the subproblem (n-something), so we can use bottom-up approach here
+start from n=0,n=1,n=2.....n=12
+
+and for every subproblem also, number of branches will depend on the int whose square is greater than the 
+subproblem itself. eg: if n = 12, we will not consider 4^2 as the branch because 4^2 = 16 > 12, 
+so we will stop at 3^2, because 9 <= 12
+
+time complexity => 
+we will have to use a nested loop, i.e. if n = 12, then 12 times, and in that, 
+we will have branches upto sqrt(n) because (number of branches) is int whose square is greater than the 
+subproblem itself
+So, time complexity = O(n*sqrt(n))
+
+space complexity => O(n+1) bcz we are using DP[] with size n+1, to store the results from sum=0 to sum=n
+
+#note: time limit exceeded for n=5254
+
