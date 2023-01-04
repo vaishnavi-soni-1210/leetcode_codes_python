@@ -1,0 +1,61 @@
+There are n uniquely-sized sticks whose lengths are integers from 1 to n. 
+You want to arrange the sticks such that exactly k sticks are visible from the left. 
+A stick is visible from the left if there are no longer sticks to the left of it.
+
+For example, if the sticks are arranged [1,3,2,5,4], then the sticks with lengths 1, 3, and 5 are visible from the left.
+Given n and k, return the number of such arrangements. 
+Since the answer may be large, return it modulo 109 + 7.
+
+Example 1:
+
+Input: n = 3, k = 2
+Output: 3
+Explanation: [1,3,2], [2,3,1], and [2,1,3] are the only arrangements such that exactly 2 sticks are visible.
+The visible sticks are underlined.
+Example 2:
+
+Input: n = 5, k = 5
+Output: 1
+Explanation: [1,2,3,4,5] is the only arrangement such that all 5 sticks are visible.
+The visible sticks are underlined.
+Example 3:
+
+Input: n = 20, k = 11
+Output: 647427950
+Explanation: There are 647427950 (mod 109 + 7) ways to rearrange the sticks such that exactly 11 sticks are visible.
+
+Approach: Dynamic programing - DFS - but do it reverse 
+REVERSE: Consider which candle to be placed at the last position at each point
+Store repeated work in cache = dp[n][k]
+eg: n = 3,k=2 so input array is [1,2,3] i.e. 3 sizes of candles & k is number of candles to be visible
+
+Base cases:
+1.If n = k i.e. all candles need to be visible, result = 1 i.e. it can be only arranged in one way(1,2,3)
+2.If n = 0 or k = 0, result = 0 i.e. can't be arranged in any way
+
+On each iteration, n & k values will be calculated
+
+eg: n=3, k=2 ------- [1,2,3]
+Trick: Candles used decision tree: 3 possibilies to use candles at LAST POSITION:
+
+[1]        [2]         [3]
+now, value of n,k will change as per which candle is used in previous step
+n=2         n=2        n=2
+k=2         k=2        k=1
+m=0         m=1        m=2
+
+k remains 2 for the first 2 cases because if we keep 1,2 candles at the last position, 
+then there is atleast one candle taller than them & 1,2 won't be visible from left
+Also, if we last last candle i.e. n i.e. 3 at the last position, it will surely be visible, so k = k-1
+
+Also, we can keep a variable m to track the number of candles remaining with smaller length
+
+So, calculating formula for dp[n][k] from above diagram, for any instance, 
+the last branch will have n=n-1 & k=k-1, 
+and rest all branches i.e. (n-1)branches will have n=n-1,k=k
+
+for each value of n,m:
+dp[n][k] = dp[n-1][k-1] + (n-1).dp[n-1][k]
+
+time complexity = O(n*k)
+memory complexity = O(n*k)
